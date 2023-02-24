@@ -1,0 +1,60 @@
+import random
+import time
+from selenium.webdriver import ActionChains
+from selenium import webdriver
+from selenium.webdriver.support.select import Select
+
+
+driver=webdriver.Chrome()
+driver.get('http://tutorialsninja.com/demo/')
+page_title = driver.title
+print("Page title is:", page_title)
+driver.maximize_window()
+phones=driver.find_element("xpath",'//a[text()="Phones & PDAs"]')
+phones.click()
+iphone=driver.find_element("xpath",'//a[text()="iPhone"]')
+iphone.click()
+time.sleep(3)
+quantity=driver.find_element("id",'input-quantity')
+quantity.click()
+time.sleep(3)
+quantity.clear()
+time.sleep(3)
+quantity.send_keys('2')
+time.sleep(3)
+add_to_button=driver.find_element("id",'button-cart')
+add_to_button.click()
+time.sleep(3)
+laptops=driver.find_element("xpath",'//a[text()="Laptops & Notebooks"]')
+action=ActionChains(driver)
+action.move_to_element(laptops).perform()
+time.sleep(3)
+laptops_2=driver.find_element("xpath",'//a[text()="Show All Laptops & Notebooks"]')
+laptops_2.click()
+time.sleep(3)
+HP=driver.find_element("xpath",'//a[text()="HP LP3065"]')
+HP.click()
+add_to_button_2=driver.find_element("xpath",'//button[@id="button-cart"]')
+add_to_button_2.location_once_scrolled_into_view
+time.sleep(3)
+calendar=driver.find_element("xpath",'//i[@class="fa fa-calendar"]')
+calendar.click()
+time.sleep(3)
+next_click_calendar=driver.find_element("xpath",'//th[@class="next"]')
+month_year=driver.find_element("xpath",'//th[@class="picker-switch"]')
+while month_year.text != 'March 2023':
+    next_click_calendar.click()
+time.sleep(3)
+calendar_date=driver.find_element("xpath",'//td[text()="6"]')
+calendar_date.click()
+time.sleep(3)
+add_to_button_2.click()
+time.sleep(3)
+go_to_cart=driver.find_element("id",'cart-total')
+go_to_cart.click()
+time.sleep(3)
+checkout=driver.find_element("xpath",'//p[@class="text-right"]/a[2]')
+checkout.click()
+time.sleep(3)
+
+driver.close()
